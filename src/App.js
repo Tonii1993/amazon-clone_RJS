@@ -1,38 +1,40 @@
-import React from "react";
-import { BrowserRouter, Routes, Route} from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Home from "./components/Home";
 import Checkout from "./components/Checkout";
 import Login from "./components/Login";
-import { auth } from './components/Firebase';
+import { useStateValue } from "./components/StateProvider";
+import { auth } from "./components/Firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
 
+  //piece of code which runs based on a given condition
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (authUser) => {
       if (authUser) {
-        // the user is logged in
+        //the user is logged in
         dispatch({
           type: "SET_USER",
           user: authUser,
         });
       } else {
-        // the user is logged out
+        //the use is logged out
         dispatch({
           type: "SET_USER",
           user: null,
         });
       }
     });
-
     return () => {
-      //any cleanup operation go in here
+      //any cleanup operations
       unsubscribe();
     };
   }, []);
 
-  //console.log("useeer", user);
+  console.log("userrr", user);
 
   return (
     <>
