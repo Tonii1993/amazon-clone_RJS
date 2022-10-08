@@ -34,7 +34,7 @@ function App() {
     };
   }, []);
 
-  console.log("userrr", user);
+  // console.log("userrr", user);
 
   return (
     <>

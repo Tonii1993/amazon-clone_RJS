@@ -15,13 +15,13 @@ function reducer(state, action) {
         ...state,
         user: action.user,
       };
-    case "ADD":
+    case "ADD_TO_BASKET":
       //logic to adding items to basket
       return {
         ...state,
         basket: [...state.basket, action.item],
       };
-    case "REMOVE":
+    case "REMOVE_FROM_BASKET":
       //logic removing items from basket
 
       //we cloned the basket
